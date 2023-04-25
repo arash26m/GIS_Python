@@ -61,4 +61,11 @@ for point in pointData['geometry']:
 
 df = pd.DataFrame(rows_list)
 
+-------------------------#Set shapefile or raster to specefic coordinate system
+import geopandas as gpd
+gdf = gpd.read_file('my_shapefile.shp')  # read in the shapefile
+gdf.crs = 'EPSG:32611'  # set the CRS to UTM zone 11N
 -------------------------#
+
+
+
