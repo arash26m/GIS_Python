@@ -65,7 +65,22 @@ df = pd.DataFrame(rows_list)
 import geopandas as gpd
 gdf = gpd.read_file('my_shapefile.shp')  # read in the shapefile
 gdf.crs = 'EPSG:32611'  # set the CRS to UTM zone 11N
+
+-------------------------#convert xy values to a shapefile
+import pandas as pd
+
+df = pd.read_excel(r'C:\Users\arasht\OneDrive\0-TAMU\points.xlsx')
+
+#Create a new geopandas GeoDataFrame using the latitude and longitude columns
+import geopandas as gpd
+from shapely.geometry import Point
+
+geometry = [Point(xy) for xy in zip(df['Longitude'], df['Latitude'])]
+
+gdf = gpd.GeoDataFrame(df, crs='EPSG:4326', geometry=geometry)
+
+#Save the GeoDataFrame as a shapefile
+gdf.to_file(r'C:\Users\arasht\OneDrive\0-TAMU\points.shp', driver='ESRI Shapefile')
+
 -------------------------#
-
-
 
