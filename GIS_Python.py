@@ -1,4 +1,4 @@
--------------------------#ArcGIS “Summary Statistics” in Geoprocessing  
+#-------------------------ArcGIS “Summary Statistics” in Geoprocessing  
 import pandas as pd
 
 # create example DataFrame
@@ -20,7 +20,7 @@ df = df.rename(columns={'B': 'B_orig', 'B_y': 'C'})
 
 print(df)
 
--------------------------#Extraxt value to points
+#-------------------------Extraxt value to points
 #import required libraries
 %matplotlib inline
 import matplotlib.pyplot as plt
@@ -61,12 +61,12 @@ for point in pointData['geometry']:
 
 df = pd.DataFrame(rows_list)
 
--------------------------#Set shapefile or raster to specefic coordinate system
+#-------------------------Set shapefile or raster to specefic coordinate system
 import geopandas as gpd
 gdf = gpd.read_file('my_shapefile.shp')  # read in the shapefile
 gdf.crs = 'EPSG:32611'  # set the CRS to UTM zone 11N
 
--------------------------#convert xy values to a shapefile
+#-------------------------convert xy values to a shapefile
 import pandas as pd
 
 df = pd.read_excel(r'C:\Users\arasht\OneDrive\0-TAMU\points.xlsx')
@@ -82,5 +82,22 @@ gdf = gpd.GeoDataFrame(df, crs='EPSG:4326', geometry=geometry)
 #Save the GeoDataFrame as a shapefile
 gdf.to_file(r'C:\Users\arasht\OneDrive\0-TAMU\points.shp', driver='ESRI Shapefile')
 
--------------------------#
+#-------------------------select points by location (inside a polygon)
+import geopandas as gpd
+
+# Import the polygon shapefile
+polygon = gpd.read_file(r'C:\Users\arasht\OneDrive - Texas A&M University\Documents\0_tamu_modeling\GIS_General_Files\TexasCounties_HarrisCounty\Harris_County.shp')
+
+# Import the points shapefile
+points = gpd.read_file(r'C:\Users\arasht\OneDrive - Texas A&M University\Documents\0_tamu_modeling\GIS_General_Files\points.shp')
+
+# Select points inside the polygon
+selected_points = points[points.within(polygon.geometry.iloc[0])]
+
+# Print the selected points
+print(selected_points)
+selected_points.to_csv(r'C:\Users\arasht\OneDrive - Texas A&M University\Documents\0_tamu_modeling\GIS_General_Files\selected_points.csv')
+
+#-------------------------
+
 
