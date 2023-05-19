@@ -20,7 +20,7 @@ df = df.rename(columns={'B': 'B_orig', 'B_y': 'C'})
 
 print(df)
 
-#-------------------------Extraxt value to points
+#-------------------------Extract value to points
 #import required libraries
 %matplotlib inline
 import matplotlib.pyplot as plt
