@@ -1,3 +1,7 @@
+#-------------------------Install Packages in CoLab
+!pip install geopandas
+!pip install rasterio
+
 #-------------------------ArcGIS “Summary Statistics” in Geoprocessing  
 import pandas as pd
 
