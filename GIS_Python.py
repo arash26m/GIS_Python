@@ -98,6 +98,23 @@ selected_points = points[points.within(polygon.geometry.iloc[0])]
 print(selected_points)
 selected_points.to_csv(r'C:\Users\arasht\OneDrive - Texas A&M University\Documents\0_tamu_modeling\GIS_General_Files\selected_points.csv')
 
+#-------------------------Convert shapefile data (e.g., NSI) to csv
+import geopandas as gpd
+import pandas as pd
+
+# Read the shapefile
+shapefile_path = 'path/to/your/shapefile.shp'
+gdf = gpd.read_file(shapefile_path)
+
+# Convert the geometry column to WKT (Well-Known Text) format
+gdf['geometry'] = gdf['geometry'].apply(lambda geom: geom.wkt)
+
+# Convert the GeoDataFrame to a DataFrame
+df = pd.DataFrame(gdf)
+
+# Save the DataFrame to a CSV file
+csv_file_path = 'path/to/your/output.csv'
+df.to_csv(csv_file_path, index=False)
 #-------------------------
 
 
