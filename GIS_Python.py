@@ -119,6 +119,22 @@ df = pd.DataFrame(gdf)
 # Save the DataFrame to a CSV file
 csv_file_path = 'path/to/your/output.csv'
 df.to_csv(csv_file_path, index=False)
+#-------------------------Convert NSI data to CSV
+import geopandas as gpd
+
+# Read the GeoPackage file
+gdf = gpd.read_file('input.gpkg')
+
+# Convert to shapefile
+shapefile_path = 'output.shp'
+gdf.to_file(shapefile_path)
+
+# Read the shapefile
+shapefile_gdf = gpd.read_file(shapefile_path)
+
+# Convert to CSV
+csv_path = 'output.csv'
+shapefile_gdf.to_csv(csv_path, index=False)
 #-------------------------
 
 
