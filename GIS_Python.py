@@ -86,7 +86,7 @@ gdf = gpd.GeoDataFrame(df, crs='EPSG:4326', geometry=geometry)
 #Save the GeoDataFrame as a shapefile
 gdf.to_file(r'C:\Users\arasht\OneDrive\0-TAMU\points.shp', driver='ESRI Shapefile')
 
-#-------------------------select points by location (inside a polygon)
+#-------------------------select points inside a polygon
 import geopandas as gpd
 
 # Import the polygon shapefile
